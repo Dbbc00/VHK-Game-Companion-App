@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/games/games",
+    "pages/game-detail/game-detail",
+    "pages/companions/companions",
+    "pages/companion-detail/companion-detail",
+    "pages/order-create/order-create",
+    "pages/orders/orders",
+    "pages/order-detail/order-detail",
+    "pages/chat/chat",
+    "pages/user/user",
+    "pages/member/member",
+    "pages/wallet/wallet",
+    "pages/withdraw/withdraw",
+    "pages/settings/settings",
+    "pages/search/search",
+    "pages/webview/webview"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "VHK游戏陪玩",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#86868B",
+    "selectedColor": "#007AFF",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/images/tabbar/home.png",
+        "selectedIconPath": "assets/images/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/games/games",
+        "text": "游戏",
+        "iconPath": "assets/images/tabbar/game.png",
+        "selectedIconPath": "assets/images/tabbar/game-active.png"
+      },
+      {
+        "pagePath": "pages/orders/orders",
+        "text": "订单",
+        "iconPath": "assets/images/tabbar/order.png",
+        "selectedIconPath": "assets/images/tabbar/order-active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "assets/images/tabbar/user.png",
+        "selectedIconPath": "assets/images/tabbar/user-active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
+}
