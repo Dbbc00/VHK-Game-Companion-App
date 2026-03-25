@@ -1,0 +1,78 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./vhk-backend
+      dockerfile: Dockerfile
+    container_name: vhk-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/vhk_game
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - vhk-network
+
+  admin:
+    build:
+      context: ./vhk-admin
+      dockerfile: Dockerfile
+    container_name: vhk-admin
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - vhk-network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: vhk-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - vhk-network
+
+  redis:
+    image: redis:7.0
+    container_name: vhk-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - vhk-network
+
+  nginx:
+    image: nginx:1.21
+    container_name: vhk-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./vhk-admin/dist:/usr/share/nginx/html
+    depends_on:
+      - backend
+    networks:
+      - vhk-network
+    profiles:
+      - production
+
+volumes:
+  mongodb_data:
+    driver: local
+    name: vhk_mongodb_data
+  redis_data:
+    driver: local
+    name: vhk_redis_data
+
+networks:
+  vhk-network:
+    driver: bridge
+    name: vhk-network
